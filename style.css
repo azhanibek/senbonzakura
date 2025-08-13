@@ -1,83 +1,103 @@
-.title{
-    font-family: "Croissant One", serif;
-    z-index: 1;
-}
-.croissant-one-regular {
-    font-family: "Croissant One", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+:root{
+      --cream: #FAF6E3;   /* header bg */
+      --sage:  #D8DBBD;   /* about */
+      --sand:  #B59F78;   /* skills accents */
+      --ink:   #2A3663;   /* footer bg, headings accents */
+      --text:  #1b1f24;   /* body text */
+      --muted: #6b7280;   /* secondary text */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+      --maxw: 1100px;
+    }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.header{
-    background-color: #FAF6E3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-around;
-    height: 60vh;
-    margin: 0;
-    padding: 0;
-    
-    gap: 50px;
-}
-.ava{
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: solid 5px #B59F78;
-    z-index: 1;
-}
-.sakura{
-    position: fixed;
-    margin-top: -25px;
-    margin-left: -25px;
-    height: 150px;
-    z-index: 0;
-}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
 
-.aboutme{
-    background-color: #D8DBBD;
-    display: flex;
-    height: 200px;
-    margin: 0;
-    padding: 0;
-}
+    .title{ 
+        font-family: "Croissant One", serif; 
+    }
 
-.skills{
-    background-color: #B59F78;
-    display: flex;
-    height: 200px;
-    margin: 0;
-    padding: 0;
-}
+    /* Layout */
+    .container{ display:flex; flex-direction:column; }
+    .wrap{ width:100%; max-width: var(--maxw); margin-inline:auto; padding-inline: 24px; }
 
-.contactme{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 2fr 1fr;
-    background-color: #2A3663;
-    height: 200px;
-    margin: 0;
-    padding: 0;
-}
-.foot3{
-    color: #FAF6E3;
-    font-size: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: span 3;
-}
-.contactme *{
-    color: #FAF6E3;
-    align-self: center;
-    justify-self: center;
-    text-decoration: none;
-}
+    /* Header */
+    header{
+      background: var(--cream);
+      padding: 56px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero{ display:flex; gap:32px; align-items:center; justify-content:center; flex-wrap:wrap; }
+    .avatar{
+      height: 160px; width:160px; border-radius: 50%; object-fit: cover;
+      border: 6px solid var(--sand);
+      box-shadow: var(--shadow);
+    }
+    .intro{ text-align:center; max-width: 720px; }
+    .intro h1{ margin: 8px 0 6px; font-size: clamp(28px, 4vw, 40px); line-height:1.15; }
+    .intro .role{ font-weight:600; color: var(--ink); font-size: clamp(16px, 2.5vw, 18px); }
+    .intro p{ margin:14px auto 0; color: var(--muted); }
+    .chiprow{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+    .chip{ background:#fff; border:1px solid #ece8d9; padding:6px 12px; border-radius:999px; font-size:13px; }
 
+    /* Section scaffold */
+    section{ padding: 8px 0 0; }
+    .section-card{
+      background:#fff; border: 1px solid #ececec; border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 24px; position:relative;
+    }
+    .section-header{
+      display:flex; align-items:center; gap:16px; margin-top: 8px; margin-bottom: 12px;
+    }
+    .section-header h2{ font-size: 22px; margin:0; color: var(--ink); }
+
+    /* About */
+    .about{ background: var(--sage); padding: 36px 0 48px; }
+    .about .section-card{ background: #f9faf6; }
+
+    /* Grid helpers */
+    .grid{ display:grid; gap:16px; }
+    .cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media (max-width: 800px){ .cols-2{ grid-template-columns: 1fr; } }
+
+    /* Experience timeline */
+    .timeline{ position:relative; padding-left: 18px; }
+    .timeline::before{ content:""; position:absolute; left:4px; top:0; bottom:0; width:2px; background:#ececec; }
+    .item{ position:relative; padding: 0 0 18px 0; }
+    .item::marker{ content:"" }
+    .item h3{ margin:0 0 4px; font-size: 18px; }
+    .item .meta{ font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .item ul{ margin: 8px 0 0 18px; display:grid; gap:6px; }
+
+    /* Skills */
+    .badge{ display:inline-block; padding:8px 12px; border-radius:12px; background: #f6f2ea; border:1px solid #eadfcd; }
+    .skills-wrap{ display:flex; flex-wrap:wrap; gap:10px; }
+    .group{ margin-bottom: 12px; }
+    .group h4{ margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing:.08em; color: var(--muted); }
+
+    /* Cards within grid */
+    .card{ border:1px solid #ececec; border-radius: 14px; padding: 16px; background:#fff; }
+
+    /* Footer / Contact */
+    footer{
+      background: var(--ink);
+      color: #fff; margin-top: 8px; padding: 32px 0;
+      margin-top: 48px;
+    }
+    .footer-grid{ display:grid; grid-template-columns: 1.2fr 1fr 1fr; gap:20px; align-items:start; }
+    @media (max-width: 900px){ .footer-grid{ grid-template-columns: 1fr; text-align:center; } }
+    .footer-title{ font-family: "Croissant One", serif; font-size: 22px; margin:0 0 8px; }
+    a{ color: inherit; }
+    .link{ color:#fff; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,.45); }
+    .link:hover{ border-bottom-style: solid; }
+
+    /* Nice small details */
+    .kicker{ font-size: 12px; text-transform: uppercase; letter-spacing:.12em; color: var(--muted); }
+    .spacer{ height: 6px; }
